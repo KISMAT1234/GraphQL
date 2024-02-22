@@ -12,10 +12,6 @@ query GetTodosWithUser{
   }
 }
 `
-
-
-
-
 function App() {
   const {data, loading} = useQuery(query)
 
