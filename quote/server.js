@@ -1,26 +1,38 @@
-import {ApolloServer, gql} from "apollo-server"
+// const express = require ('express');
+import express from 'express'
+import {ApolloServer} from '@apollo/server';
+import { gql } from 'apollo-server-core';
+import {expressMiddleware} from'@apollo/server/express4'
+import bodyParser from "body-parser"
+import typeDefs from './schemaGql.js';
+import resolvers from './resolvers.js';
 
 
-const typeDefs = gql`
-type Query{
-   greet:String
-}
-`
 
-const resolvers={
-     Query:{
-        greet:()=>"hello world"
-     }
-}
+async function startServer() {
+    const app = express()
+    
+
+
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers
-})
+        typeDefs,
+        resolvers,
+    })
 
 
-server.listen().then(({url})=>{
-    console.log(`server running at ${url}`);
-})
+app.use(bodyParser.json());
+// app.use(cors());
+
+await server.start()
+
+app.use("/quote", expressMiddleware(server));
+
+app.listen(8000, () => console.log('server started at 8000'))
+
+}
+
+startServer()
+
 
 
