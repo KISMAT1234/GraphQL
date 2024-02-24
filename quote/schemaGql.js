@@ -1,13 +1,20 @@
 
 import { gql } from 'apollo-server-core';
 const typeDefs = gql`
+type Query{
+   users:[User]
+   user(_id:ID):User
+   quotes:[Quote]
+   iquote(by:ID!):[Quote]
+}
 type User{
-    id:ID!
-    firstName:String
-    lastName:String
-    email:String
-    password:String
-    quotes:String
+    _id:ID!
+    firstName:String!
+    lastName:String!
+    email:String!
+    password:String!
+    quotes:[Quote]
+
 }
 
 type Quote{
@@ -15,11 +22,16 @@ type Quote{
     by:ID
 }
 
-type Query{
-   users:[User]
-   user(id:ID):User
-   quotes:[Quote]
-   iquote(by:ID!):[Quote]
+
+type Mutation{
+    signupUser(userNew:UserInput!):User
+    createQuote(name:String):String
+}
+input UserInput{
+    firstName:String!
+    lastName:String!
+    email:String!
+    password:String!
 }
 `
 export default typeDefs
