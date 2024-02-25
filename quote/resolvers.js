@@ -6,7 +6,9 @@ const User = mongoose.model("User")
 
 const resolvers={
     Query:{
-       
+       async reciepe(_,{ID}){
+        return await Recipe.findById(ID)
+       }
     },
     // User:{
 
