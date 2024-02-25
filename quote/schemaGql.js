@@ -23,6 +23,7 @@ type Quote{
 }
 
 
+
 type Mutation{
     signupUser(userNew:UserInput!):User
     createQuote(name:String):String
