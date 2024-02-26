@@ -31,7 +31,7 @@ async function startServer() {
         `,
         resolvers:{
             Todo:{
-                user: async (todo) =>(await axios.get(`https://jsonplaceholder.typicode.com/users/${todo.id}`)).data,
+                user: async () =>(await axios.get(`https://jsonplaceholder.typicode.com/users`))
             },
             Query:{
                 getTodos: async() => 
