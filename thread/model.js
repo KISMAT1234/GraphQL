@@ -1,13 +1,12 @@
 import mongoose from 'mongoose' 
 
 const userSchema = mongoose.Schema({
-    name:String,
-    lastName:String,
+    username:String,
     email:String,
-    address:String
-
+    password:String,
+    image: String
 })
 
-const users = new mongoose.model("graphql",userSchema)
+const users = new mongoose.model("users",userSchema)
 
 export default users;

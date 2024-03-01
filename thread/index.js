@@ -18,10 +18,7 @@ databaseConnection()
 const gqlServer = new ApolloServer({
     typeDefs:`
     type User{
-       name:String
-       lastName:String
-       email:String
-       address:String
+       username:String
     }
 
      type Query{
