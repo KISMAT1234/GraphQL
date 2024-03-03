@@ -3,6 +3,7 @@ import { ApolloServer } from '@apollo/server';
 import {expressMiddleware} from '@apollo/server/express4'
 import users from "./model.js"
 import databaseConnection from './connection.js'
+import cors from 'cors'
 
 
 
@@ -12,6 +13,7 @@ const app = express();
 const PORT = Number(process.env.PORT) || 8000
 
 app.use(express.json())
+app.use(express.cors())
 databaseConnection()
 // graphql server
 
