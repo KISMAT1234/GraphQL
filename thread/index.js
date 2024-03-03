@@ -13,7 +13,9 @@ const app = express();
 const PORT = Number(process.env.PORT) || 8000
 
 app.use(express.json())
-app.use(express.cors())
+
+app.use(cors());
+
 databaseConnection()
 // graphql server
 
