@@ -2,13 +2,8 @@ import {useQuery, gql} from '@apollo/client'
 
 const query = gql`
 query GetTodosWithUser{
-  getTodos{
-    id
-    title 
-    completed
-    user{
-      id name
-    }
+  allUsers{
+    username
   }
 }
 `
@@ -20,7 +15,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="App">
          {JSON.stringify(data)}
       </div>
     
