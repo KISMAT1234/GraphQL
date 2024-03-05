@@ -28,11 +28,21 @@ const gqlServer = new ApolloServer({
      type Query{
          allUsers:[User]
      }
+     type Mutation{
+        addMsg(username: String!):User
+     }
     `,  //Schema
     resolvers:{
         Query:{
             allUsers: async()=>{
                 return await users.find({})
+            },
+        },
+        Mutation:{
+            addMsg: async({username}) => {
+                try {
+                   return await user.create()
+                  } 
             }
         }
     }  //
