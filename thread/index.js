@@ -23,11 +23,13 @@ const gqlServer = new ApolloServer({
     typeDefs:`
     type User{
        username:String
+       email: String
     }
 
      type Query{
          allUsers:[User]
      }
+     
      type Mutation{
         addMsg(username: String!):User
      }
@@ -38,13 +40,13 @@ const gqlServer = new ApolloServer({
                 return await users.find({})
             },
         },
-        Mutation:{
-            addMsg: async({username}) => {
-                try {
-                   return await user.create()
-                  } 
-            }
-        }
+        // Mutation:{
+        //     addMsg: async({username}) => {
+        //         try {
+        //            return await user.create()
+        //           } 
+        //     }
+        // }
     }  //
 });
 
