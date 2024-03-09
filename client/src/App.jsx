@@ -4,6 +4,7 @@ const query = gql`
 query GetTodosWithUser{
   allUsers{
     username
+    email
   }
 }
 `
@@ -21,9 +22,13 @@ function App() {
          <table>
             <tbody>
                {
-                data.allUsers.map(item =>
-                  <td>{item.username}</td>
-                  )
+               
+                data.allUsers.map((item) =>(
+                  <div>
+                      <div>{item.username}</div>
+                      <div>{item.email}</div>
+                  </div>
+                  ))
                }
             </tbody>
          </table>
