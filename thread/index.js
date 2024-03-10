@@ -22,17 +22,19 @@ databaseConnection()
 const gqlServer = new ApolloServer({
     typeDefs:`
     type User{
-       username:String
-       email: String
+       username:String!
+       email: String!
     }
 
      type Query{
          allUsers(username:String!):[User]
      }
      
-     type Mutation{
-        addMsg(username: String!):User
-     }
+     type Mutation {
+        createUser(post:String!):User
+      }
+    
+ 
     `,  //Schema
     resolvers:{
         Query:{
@@ -40,13 +42,13 @@ const gqlServer = new ApolloServer({
                 return await users.find(username)
             },
         },
-        // Mutation:{
-        //     addMsg: async({username}) => {
-        //         try {
-        //            return await user.create()
-        //           } 
-        //     }
-        // }
+        Mutation:{
+            createUser: async(_, {post}) => {
+                const data = await users({post});
+                return data.save()
+                // return { id: result.insertedId, ...input };
+            }
+        }
     }  //
 });
 
