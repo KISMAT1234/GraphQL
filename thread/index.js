@@ -27,7 +27,7 @@ const gqlServer = new ApolloServer({
     }
 
      type Query{
-         allUsers:[User]
+         allUsers(username:String!):[User]
      }
      
      type Mutation{
@@ -36,8 +36,8 @@ const gqlServer = new ApolloServer({
     `,  //Schema
     resolvers:{
         Query:{
-            allUsers: async()=>{
-                return await users.find({})
+            allUsers: async(_, username)=>{
+                return await users.find(username)
             },
         },
         // Mutation:{
