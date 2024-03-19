@@ -7,15 +7,14 @@ type Query{
    quotes:[Quote]
    iquote(by:ID!):[Quote]
 }
-type User{
-    _id:ID!
-    firstName:String!
-    lastName:String!
-    email:String!
-    password:String!
-    quotes:[Quote]
-
-}
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    age: Int
+    createdAt: String!
+    updatedAt: String!
+  }
 
 type Quote{
     name:String
@@ -23,16 +22,8 @@ type Quote{
 }
 
 
-
-type Mutation{
-    signupUser(userNew:UserInput!):User
-    createQuote(name:String):String
-}
-input UserInput{
-    firstName:String!
-    lastName:String!
-    email:String!
-    password:String!
-}
+type Mutation {
+    createUser(username: String!, email: String!, age: Int): User
+  }
 `
 export default typeDefs

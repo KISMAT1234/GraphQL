@@ -24,32 +24,35 @@ const gqlServer = new ApolloServer({
     type User{
        username:String!
        email: String!
+       password: String!
     }
 
      type Query{
-         allUsers(username:String!):[User]
+         allUsers:[User]
      }
-     
+
      type Mutation {
-        createUser(post:String!):User
+        createUser(username: String!, email: String!, password: String!): User!
       }
+     
+  
     
  
     `,  //Schema
     resolvers:{
         Query:{
-            allUsers: async(_, username)=>{
-                return await users.find(username)
+            allUsers: async()=>{
+                return await users.find()
             },
         },
-        Mutation:{
-            createUser: async(_, {post}) => {
-                const data = await users({post});
-                return data.save()
-                // return { id: result.insertedId, ...input };
-            }
-        }
-    }  //
+        Mutation: {
+            createUser: async (_, { username, email,password }) => {
+              const user = new users({ username, email,password });
+              await user.save();
+              return user;
+            },
+          },
+    }  
 });
 
 await gqlServer.start()
