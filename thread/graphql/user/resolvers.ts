@@ -1,2 +1,0 @@
-const queris = {} 
-const mutation = {}
