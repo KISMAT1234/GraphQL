@@ -1,7 +1,8 @@
 const queries = {} 
 const mutations = {
-    createUser: async()=>{
-        return 'randomid';
+    createUser: async(_,CreateUserPayload)=>{
+        const response = await UserService.createUser(payload);
+        return response .id;
     }
 }
 
